@@ -60,7 +60,7 @@ private struct CurrencyInputField: View {
         HStack {
             Text(title)
             Spacer(minLength: 12)
-            TextField("0.00", value: $value, format: .number.precision(.fractionLength(2)))
+            TextField("", value: $value, format: .number.precision(.fractionLength(2)), prompt: Text("0.00"))
                 .multilineTextAlignment(.trailing)
                 .frame(width: 150)
                 .textFieldStyle(.roundedBorder)
