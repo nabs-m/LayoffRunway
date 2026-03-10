@@ -6,6 +6,7 @@ struct RunwayInput {
     let grossPaycheck: Double
     let netPaycheck: Double
     let paycheckOnlyDeductions: Double
+    let partnerMonthlyNetIncome: Double
     let grossSeverance: Double
     let emergencyFund: Double
     let monthlyBudget: Double

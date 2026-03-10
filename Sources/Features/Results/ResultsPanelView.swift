@@ -9,7 +9,7 @@ struct ResultsPanelView: View {
                 ResultCardView(
                     title: "Estimated Runway",
                     value: runwayLabel(months: result.runwayMonths),
-                    subtitle: "Based on your current monthly budget"
+                    subtitle: "Based on household budget after partner income"
                 )
                 .transition(.move(edge: .top).combined(with: .opacity))
 
@@ -47,7 +47,7 @@ struct ResultsPanelView: View {
 
                     Text("1) We infer an effective deduction rate from your gross and net paycheque, after adding back any paycheque-only deductions.")
                     Text("2) We apply that same deduction rate to your gross severance lump sum to estimate net severance.")
-                    Text("3) We add estimated pay remaining through your termination date, plus emergency fund, then divide by monthly budget.")
+                    Text("3) We add estimated pay remaining through your termination date and emergency fund, then divide by monthly budget after partner income.")
                 }
                 .font(.callout)
                 .foregroundStyle(.secondary)
@@ -62,6 +62,10 @@ struct ResultsPanelView: View {
     }
 
     private func runwayLabel(months: Double) -> String {
+        if months.isInfinite {
+            return "Not depleted"
+        }
+
         let safeMonths = max(months, 0)
         let monthCount = Int(floor(safeMonths))
         let fraction = safeMonths - Double(monthCount)

@@ -5,6 +5,7 @@ enum RunwayCalculator {
         let safeGrossPaycheck = max(input.grossPaycheck, 0)
         let safeNetPaycheck = max(input.netPaycheck, 0)
         let safeAdditionalDeductions = max(input.paycheckOnlyDeductions, 0)
+        let safePartnerMonthlyNetIncome = max(input.partnerMonthlyNetIncome, 0)
         let safeGrossSeverance = max(input.grossSeverance, 0)
         let safeEmergencyFund = max(input.emergencyFund, 0)
         let safeMonthlyBudget = max(input.monthlyBudget, 0)
@@ -22,7 +23,8 @@ enum RunwayCalculator {
         )
 
         let totalAvailableCash = payEstimate.remainingPayNet + netSeverance + safeEmergencyFund
-        let runwayMonths = safeMonthlyBudget > 0 ? (totalAvailableCash / safeMonthlyBudget) : 0
+        let effectiveMonthlyBurn = max(safeMonthlyBudget - safePartnerMonthlyNetIncome, 0)
+        let runwayMonths = effectiveMonthlyBurn > 0 ? (totalAvailableCash / effectiveMonthlyBurn) : .infinity
 
         return RunwayResult(
             deductionRate: deductionRate,

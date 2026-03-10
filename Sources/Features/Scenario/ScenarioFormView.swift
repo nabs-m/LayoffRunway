@@ -13,19 +13,23 @@ struct ScenarioFormView: View {
 
             Form {
                 Section("Income Snapshot") {
-                    CurrencyInputField(title: "Gross semi-monthly paycheque", value: $viewModel.grossPaycheck)
-                    CurrencyInputField(title: "Net semi-monthly paycheque", value: $viewModel.netPaycheck)
-                    CurrencyInputField(title: "Paycheque-only deductions", value: $viewModel.paycheckOnlyDeductions)
+                    CurrencyInputField(title: "Your gross semi-monthly paycheque", value: $viewModel.grossPaycheck)
+                    CurrencyInputField(title: "Your net semi-monthly paycheque", value: $viewModel.netPaycheck)
+                    CurrencyInputField(title: "Paycheque-only deductions (optional)", value: $viewModel.paycheckOnlyDeductions)
+                    CurrencyInputField(title: "Partner monthly net income (optional)", value: $viewModel.partnerMonthlyNetIncome)
                 }
 
                 Section("End of Employment") {
                     DatePicker("Termination date", selection: $viewModel.terminationDate, displayedComponents: .date)
                     CurrencyInputField(title: "Gross severance lump sum", value: $viewModel.grossSeverance)
-                    CurrencyInputField(title: "Emergency fund", value: $viewModel.emergencyFund)
+                }
+
+                Section("Cash Reserves") {
+                    CurrencyInputField(title: "Emergency fund (optional)", value: $viewModel.emergencyFund)
                 }
 
                 Section("Spending") {
-                    CurrencyInputField(title: "Monthly budget", value: $viewModel.monthlyBudget)
+                    CurrencyInputField(title: "Monthly household budget", value: $viewModel.monthlyBudget)
                 }
             }
             .formStyle(.grouped)

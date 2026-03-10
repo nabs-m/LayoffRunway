@@ -12,6 +12,9 @@ final class RunwayViewModel: ObservableObject {
     @Published var paycheckOnlyDeductions: Double {
         didSet { save("paycheckOnlyDeductions", paycheckOnlyDeductions) }
     }
+    @Published var partnerMonthlyNetIncome: Double {
+        didSet { save("partnerMonthlyNetIncome", partnerMonthlyNetIncome) }
+    }
     @Published var terminationDate: Date {
         didSet { save("terminationDate", terminationDate.timeIntervalSince1970) }
     }
@@ -33,6 +36,7 @@ final class RunwayViewModel: ObservableObject {
         self.grossPaycheck = defaults.double(forKey: "grossPaycheck")
         self.netPaycheck = defaults.double(forKey: "netPaycheck")
         self.paycheckOnlyDeductions = defaults.double(forKey: "paycheckOnlyDeductions")
+        self.partnerMonthlyNetIncome = defaults.double(forKey: "partnerMonthlyNetIncome")
         let savedTermination = defaults.double(forKey: "terminationDate")
         self.terminationDate = savedTermination > 0
             ? Date(timeIntervalSince1970: savedTermination)
@@ -63,6 +67,7 @@ final class RunwayViewModel: ObservableObject {
             grossPaycheck: grossPaycheck,
             netPaycheck: netPaycheck,
             paycheckOnlyDeductions: paycheckOnlyDeductions,
+            partnerMonthlyNetIncome: partnerMonthlyNetIncome,
             grossSeverance: grossSeverance,
             emergencyFund: emergencyFund,
             monthlyBudget: monthlyBudget
@@ -76,6 +81,7 @@ final class RunwayViewModel: ObservableObject {
         grossPaycheck = 0
         netPaycheck = 0
         paycheckOnlyDeductions = 0
+        partnerMonthlyNetIncome = 0
         terminationDate = Calendar.current.date(byAdding: .month, value: 2, to: Date()) ?? Date()
         grossSeverance = 0
         emergencyFund = 0
