@@ -20,20 +20,13 @@ This app is for planning/estimation only (not payroll or tax advice).
 
 ## Run Locally
 
-### Option 1: Xcode (recommended)
-
-1. Open `Package.swift` in Xcode.
-2. Build and run the `LayoffRunway` executable target.
-
-### Option 2: Terminal
-
-```bash
-swift run
-```
+1. Open `LayoffRunway.xcodeproj` in Xcode.
+2. Select the `LayoffRunway` scheme.
+3. Build and run.
 
 ## Tech Stack
 
 - Swift 5.10+
 - SwiftUI
 - macOS 14+
-- Swift Package Manager
+- Native Xcode macOS app target
